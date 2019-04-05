@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,6 +37,37 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
+              <?php
+              if($_SESSION['statusCadastro']):
+              ?>
+                <a href="#" class="btn btn-success btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-check"></i>
+                    </span>
+                    <span class="text">Cadastro Realizado com Sucesso</span>
+                  </a>
+                  <br>
+              <?php
+              endif;
+              unset($_SESSION['statusCadastro']);
+              ?>
+              <?php
+              if($_SESSION['usuarioExiste']):
+              ?>
+
+                <a href="#" class="btn btn-warning btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-exclamation-triangle"></i>
+                    </span>
+                    <span class="text">Email já foi cadastrado</span>
+                  </a>
+                  <br>
+
+              <?php
+              endif;
+              unset($_SESSION['usuarioExiste']);
+              ?>
+              <br>
               <form class="user" action="cadastrar.php" method="POST">
                 <div class="form-group row">
                   <div class="col-sm-12 mb-3 mb-sm-0">
@@ -48,9 +82,7 @@
                     <input type="password" class="form-control form-control-user" name="senha" placeholder="Senha">
                   </div>
                 </div>
-                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                  Register Account
-                </a>
+                <button type="submit" class="btn btn-primary btn-user btn-block">Register Account</button>
                 <hr>
               </form>
               <hr>
