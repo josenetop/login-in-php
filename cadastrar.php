@@ -10,12 +10,16 @@ $sql = "select count(*) as total from tb_usuario where emailUser = '$email'";
 $result = mysqli_query($conexao, $sql);
 $row = mysqli_fetch_assoc($result);
 
+$_SESSION['usuarioExiste'] =false;
+
 if($row['total'] == 1){
     $_SESSION['usuarioExiste'] = true;
     header('Location: cadastro.php');
     exit;
 }
 $sql = "INSERT INTO tb_usuario (nomeUser, emailUser, senhaUser, createAt) VALUES ('$nome','$email', '$senha', NOW())";
+
+$_SESSION['statusCadastro'] = false;
 
 if($conexao->query($sql) === TRUE){
     $_SESSION['statusCadastro'] = true;
