@@ -1,5 +1,8 @@
 <?php
 include 'verificaLogin.php';
+function __autoload($class_name){
+		require_once 'classes/' . $class_name . '.php';
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +35,7 @@ include 'verificaLogin.php';
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -44,31 +47,10 @@ include 'verificaLogin.php';
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
-
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -95,16 +77,6 @@ include 'verificaLogin.php';
           </button>
 
           <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -132,15 +104,11 @@ include 'verificaLogin.php';
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['nomeUser']; ?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['emailUser']; ?></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout.php">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -157,92 +125,131 @@ include 'verificaLogin.php';
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
-          <!-- Content Row -->
-          <div class="row">
+          <div class="container">
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+<?php
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+$usuario = new Usuarios();
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                        </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+if(isset($_POST['cadastrar'])):
 
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+  $nome  = $_POST['nome'];
+  $email = $_POST['email'];
+
+  $usuario->setNome($nome);
+  $usuario->setEmail($email);
+
+  # Insert
+  if($usuario->insert()){
+    echo "Inserido com sucesso!";
+  }
+
+endif;
+
+?>
+
+
+<?php 
+if(isset($_POST['atualizar'])):
+
+  $id = $_POST['id'];
+  $nome = $_POST['nome'];
+  $email = $_POST['email'];
+
+  $usuario->setNome($nome);
+  $usuario->setEmail($email);
+
+  if($usuario->update($id)){
+    echo "Atualizado com sucesso!";
+  }
+
+endif;
+?>
+
+<?php
+if(isset($_GET['acao']) && $_GET['acao'] == 'deletar'):
+
+  $id = (int)$_GET['id'];
+  if($usuario->delete($id)){
+    echo "Deletado com sucesso!";
+  }
+
+endif;
+?>
+
+<?php
+if(isset($_GET['acao']) && $_GET['acao'] == 'editar'){
+
+  $id = (int)$_GET['id'];
+  $resultado = $usuario->find($id);
+?>
+
+<form method="post" action="">
+  <div class="input-prepend">
+    <span class="add-on"><i class="icon-user"></i></span>
+    <input type="text" name="nome" value="<?php echo $resultado->nome; ?>" placeholder="Nome:" />
+  </div>
+  <div class="input-prepend">
+    <span class="add-on"><i class="icon-envelope"></i></span>
+    <input type="text" name="email" value="<?php echo $resultado->email; ?>" placeholder="E-mail:" />
+  </div>
+  <input type="hidden" name="id" value="<?php echo $resultado->id; ?>">
+  <br />
+  <input type="submit" name="atualizar" class="btn btn-primary" value="Atualizar dados">					
+</form>
+
+<?php }else{ ?>
+
+
+<form method="post" action="">
+  <div class="input-prepend">
+    <span class="add-on"><i class="icon-user"></i></span>
+    <input type="text" name="nome" placeholder="Nome:" />
+  </div>
+  <div class="input-prepend">
+    <span class="add-on"><i class="icon-envelope"></i></span>
+    <input type="text" name="email" placeholder="E-mail:" />
+  </div>
+  <br />
+  <input type="submit" name="cadastrar" class="btn btn-primary" value="Cadastrar dados">					
+</form>
+
+<?php } ?>
+
+<table class="table table-hover">
+  
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nome:</th>
+      <th>E-mail:</th>
+      <th>Ações:</th>
+    </tr>
+  </thead>
+  
+  <?php foreach($usuario->findAll() as $key => $value): ?>
+
+  <tbody>
+    <tr>
+      <td><?php echo $value->id; ?></td>
+      <td><?php echo $value->nome; ?></td>
+      <td><?php echo $value->email; ?></td>
+      <td>
+        <?php echo "<a href='index.php?acao=editar&id=" . $value->id . "'>Editar</a>"; ?>
+        <?php echo "<a href='index.php?acao=deletar&id=" . $value->id . "' onclick='return confirm(\"Deseja realmente deletar?\")'>Deletar</a>"; ?>
+      </td>
+    </tr>
+  </tbody>
+
+  <?php endforeach; ?>
+
+</table>
+
+</div>
 
         </div>
         <!-- /.container-fluid -->

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('conexao.php');
+include('Classes/conexao.php');
     if(empty($_POST['email']) || empty($_POST['senha'])){
         header('Location: login.html');
         exit();
